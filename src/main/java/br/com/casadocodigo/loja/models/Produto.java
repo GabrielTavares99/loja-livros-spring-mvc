@@ -1,7 +1,14 @@
 package br.com.casadocodigo.loja.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Produto {
 
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String nome;
@@ -39,5 +46,9 @@ public class Produto {
                 ", descricao='" + descricao + '\'' +
                 ", paginas='" + paginas + '\'' +
                 '}';
+    }
+
+    public int getId() {
+        return id;
     }
 }
