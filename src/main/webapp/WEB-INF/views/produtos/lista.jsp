@@ -6,27 +6,24 @@
     <title>Formulário de cadastro de livro</title>
 </head>
 <body>
-    <form action="/casadocodigo/produtos" method="post">
-        <div>
-            <label>Nome</label>
-            <input type="text" name="nome">
-        </div>
-        <div>
-            <label>Descrição</label>
-            <textarea name="descricao"></textarea>
-        </div>
-        <div>
-            <label>Nº Páginas</label>
-            <input type="text" name="paginas">
-        </div>
-        <c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
-            <div>
-                <label>${tipoPreco}</label>
-                <input type="text" name="precos[${status.index}].valor">
-                <input type="hidden" name="precos[${status.index}].tipoPreco" value="${tipoPreco}">
-            </div>
-        </c:forEach>
-        <button type="submit">Cadastrar</button>
-    </form>
+    <h1>Lista de produtos:</h1>
+    <table style="border: black solid 1px; width: 100%">
+        <thead>
+            <tr>
+                <td>Título</td>
+                <td>Descrição</td>
+                <td>Páginas</td>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${produtos}" var="produto" varStatus="status">
+                <tr>
+                    <td>${produto.nome}</td>
+                    <td>${produto.descricao}</td>
+                    <td>${produto.paginas}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 </body>
 </html>

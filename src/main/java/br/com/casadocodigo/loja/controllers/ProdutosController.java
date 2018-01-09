@@ -34,7 +34,7 @@ public class ProdutosController {
     public String gravar(Produto produto){
         System.out.println(produto);
         produtoDAO.gravar(produto);
-        return "produtos/ok";
+        return "redirect:produtos/lista";
     }
 
     @RequestMapping(method = RequestMethod.GET)
