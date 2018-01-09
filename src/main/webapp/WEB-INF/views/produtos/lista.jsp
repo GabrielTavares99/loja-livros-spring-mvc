@@ -7,7 +7,10 @@
 </head>
 <body>
     <h1>Lista de produtos:</h1>
-    <table style="border: black solid 1px; width: 100%">
+
+    <h2 style="background-color: #24cd2d">${mensagem_sucesso}</h2>
+
+       <table style="border: black solid 1px; width: 100%">
         <thead>
             <tr>
                 <td>Título</td>
