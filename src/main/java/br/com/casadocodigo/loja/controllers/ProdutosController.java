@@ -4,8 +4,12 @@ import br.com.casadocodigo.loja.daos.ProdutoDAO;
 import br.com.casadocodigo.loja.models.Produto;
 import br.com.casadocodigo.loja.models.TipoPreco;
 import br.com.casadocodigo.loja.utils.Strings;
+import br.com.casadocodigo.loja.validations.ProdutoValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -24,6 +29,11 @@ public class ProdutosController {
 
     private static final Logger logger = Logger.getLogger(ProdutosController.class);
 
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder){
+        dataBinder.addValidators(new ProdutoValidation());
+    }
+
     @RequestMapping(value = "/form")
     public ModelAndView form(){
         logger.info("Acessando formulário de produtos");
@@ -33,12 +43,18 @@ public class ProdutosController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String gravar(Produto produto, RedirectAttributes redirectAttributes){
+    public ModelAndView gravar(@Valid Produto produto, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if (bindingResult.hasErrors()){
+            logger.warn("ERRO DE VALIDAÇÃO DE PRODUTOS");
+            return form();
+        }
+
         System.out.println(produto);
         produtoDAO.gravar(produto);
         redirectAttributes.addFlashAttribute(Strings.ATRIBUTO_MENSAGEM_SUCESSO, "Produto cadastrado com sucesso");
 //        tem que redicionar pra matar a requisição de post, senão bug do F5
-        return "redirect:/produtos";
+        return new ModelAndView("redirect:/produtos");
     }
 
     @RequestMapping(method = RequestMethod.GET)
