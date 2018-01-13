@@ -15,6 +15,7 @@
             <tr>
                 <td>Título</td>
                 <td>Descrição</td>
+                <td>Data lançamento</td>
                 <td>Páginas</td>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                 <tr>
                     <td>${produto.nome}</td>
                     <td>${produto.descricao}</td>
+                    <td>${produto.dataLancamento.getTime()}</td>
                     <td>${produto.paginas}</td>
                 </tr>
             </c:forEach>
