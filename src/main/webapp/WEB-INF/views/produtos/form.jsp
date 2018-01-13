@@ -10,7 +10,7 @@
 <body>
     <%--<form style="width: 50%" action="/casadocodigo/produtos" method="post">--%>
     <%--ALTERNATIVE modelAttribute="produto"--%>
-    <form:form action="${s:mvcUrl('PC#gravar').build()}" method="post" commandName="produto">
+    <form:form action="${s:mvcUrl('PC#gravar').build()}" method="post" enctype="multipart/form-data" commandName="produto">
         <div style="height: 50px; margin: 10px;">
             <label>Nome</label>
             <form:input path="nome"/>
@@ -38,6 +38,10 @@
                 <form:input type="hidden" path="precos[${status.index}].tipoPreco" value="${tipoPreco}"/>
             </div>
         </c:forEach>
+        <div>
+            <label>Sumário</label>
+            <input type="file" name="sumario"/>
+        </div>
         <button style="width: 100%" type="submit">Cadastrar</button>
     <%--</form>--%>
     </form:form>
