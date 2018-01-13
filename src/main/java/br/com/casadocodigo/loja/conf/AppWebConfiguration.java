@@ -38,7 +38,7 @@ public class AppWebConfiguration {
     }
 
     @Bean
-    public FormattingConversionService conversionService(){
+    public FormattingConversionService mvcConversionService(){
         DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
         DateFormatterRegistrar registrar = new DateFormatterRegistrar();
         registrar.setFormatter(new DateFormatter("dd/MM/yyyy"));
