@@ -35,7 +35,7 @@ public class ProdutosController {
     }
 
     @RequestMapping(value = "/form")
-    public ModelAndView form(){
+    public ModelAndView form(Produto produto){
         logger.info("Acessando formulário de produtos");
         ModelAndView modelAndView = new ModelAndView("produtos/form");
         modelAndView.addObject("tipos", TipoPreco.values());
@@ -47,7 +47,7 @@ public class ProdutosController {
 
         if (bindingResult.hasErrors()){
             logger.warn("ERRO DE VALIDAÇÃO DE PRODUTOS");
-            return form();
+            return form(produto);
         }
 
         System.out.println(produto);

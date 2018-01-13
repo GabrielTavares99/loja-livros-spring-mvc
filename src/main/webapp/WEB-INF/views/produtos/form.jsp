@@ -13,29 +13,29 @@
     <form:form action="${s:mvcUrl('PC#gravar').build()}" method="post" commandName="produto">
         <div style="height: 50px; margin: 10px;">
             <label>Nome</label>
-            <input type="text" name="nome">
+            <form:input path="nome"/>
             <form:errors path="nome"/>
         </div>
         <div style="height: 50px; margin: 10px;">
             <label>Descrição</label>
-            <textarea name="descricao"></textarea>
+            <form:textarea path="descricao"/>
             <form:errors path="descricao"/>
         </div>
         <div style="height: 50px; margin: 10px;">
             <label>Nº Páginas</label>
-            <input type="text" name="paginas">
+            <form:input path="paginas"/>
             <form:errors path="paginas"/>
         </div>
         <div style="height: 50px; margin: 10px;">
             <label>Data lançamento</label>
-            <input type="text" name="dataLancamento">
+            <form:input path="dataLancamento"/>
             <form:errors path="dataLancamento"/>
         </div>
         <c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
             <div style="height: 50px; margin: 10px;">
                 <label>${tipoPreco}</label>
-                <input type="text" name="precos[${status.index}].valor">
-                <input type="hidden" name="precos[${status.index}].tipoPreco" value="${tipoPreco}">
+                <form:input path="precos[${status.index}].valor"/>
+                <form:input type="hidden" path="precos[${status.index}].tipoPreco" value="${tipoPreco}"/>
             </div>
         </c:forEach>
         <button style="width: 100%" type="submit">Cadastrar</button>
