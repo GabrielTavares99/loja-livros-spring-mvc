@@ -20,6 +20,10 @@ public class FileSaver {
         String path = realPath+"/"+file.getOriginalFilename();
         System.out.println("Path "+ path);
         try {
+            // TODO: 18/01/18 Reafactor 
+            File fileToCreateDirs = new File(realPath+"/");
+            fileToCreateDirs.mkdirs();
+
             file.transferTo(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
