@@ -73,4 +73,10 @@ public class ProdutosController {
         return modelAndView;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/detalhe")
+    public ModelAndView detalhe(){
+        ModelAndView modelAndView = new ModelAndView("produtos/detalhe");
+        return modelAndView;
+    }
+
 }
