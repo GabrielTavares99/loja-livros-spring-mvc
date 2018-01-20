@@ -1,10 +1,13 @@
 package br.com.casadocodigo.loja.models;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Scope(value = WebApplicationContext.SCOPE_SESSION)
 @Component
 public class CarrinhoCompras {
 
