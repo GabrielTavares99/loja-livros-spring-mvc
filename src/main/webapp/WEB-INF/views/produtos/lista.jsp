@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <html>
 <head>
@@ -25,7 +26,7 @@
                 <tr>
                     <td><a href="${s:mvcUrl('PC#detalhe').arg(0, produto.id).build()}"> ${produto.nome}</a></td>
                     <td>${produto.descricao}</td>
-                    <td>${produto.dataLancamento.getTime()}</td>
+                    <td><fmt:formatDate value="${produto.dataLancamento.time}" pattern="dd/MM/yyyy"/> </td>
                     <td>${produto.paginas}</td>
                 </tr>
             </c:forEach>
