@@ -1,6 +1,9 @@
 package br.com.casadocodigo.loja.daos;
 
 import br.com.casadocodigo.loja.models.Produto;
+import com.sun.org.glassfish.gmbal.ParameterNames;
+import org.hibernate.annotations.Parameter;
+import org.jboss.logging.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -21,5 +24,9 @@ public class ProdutoDAO {
 
     public List<Produto> listar() {
         return entityManager.createQuery("SELECT p FROM Produto p", Produto.class).getResultList();
+    }
+
+    public Produto findById(Integer id) {
+        return entityManager.createQuery("SELECT distinct (p) FROM Produto p join fetch p.precos precos WHERE p.id = :id", Produto.class).setParameter("id", id).getSingleResult();
     }
 }
