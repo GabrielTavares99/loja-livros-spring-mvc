@@ -1,4 +1,7 @@
-# spring-mvc-basico
+# Loja Livros Spring MVC
+
+O objetivo do projeto é ser uma base de conhecimento de Spring MVC. Como plano de fundo, temos o desenvolvimento
+de um sistema de e-commerce de uma loja de livros.
 
 **JboosForge**<br>
 Para gerar a estrutura do projeto:
