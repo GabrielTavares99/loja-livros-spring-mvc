@@ -13,4 +13,7 @@ Para gerar a estrutura do projeto:
 Instalar Heroku toolbelt
 linux sudo snap install heroku --classic
 sudo snap install heroku --classic
-heroku create
+heroku create [nome aplicação]
+git push heroku master
+ver erros heroku -- tail
+heroku open abrir no browser
