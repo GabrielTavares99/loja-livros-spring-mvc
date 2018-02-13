@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.concurrent.Callable;
+
 //@Scope(value = WebApplicationContext.SCOPE_SESSION) USAMOS O TARGE CLASS SCOPE
 @Controller
 @RequestMapping(value = "/pagamento")
@@ -22,23 +24,26 @@ public class PagamentoController {
     @Autowired
     private RestTemplate restTemplate;
 
+    //    CALLABLE - requisição assíncrona
     @RequestMapping(value = "/finalizar", method = RequestMethod.POST)
-    public ModelAndView finalizar(RedirectAttributes attributes) {
+    public Callable<ModelAndView> finalizar(RedirectAttributes attributes) {
 
-        String uri = "http://book-payment.herokuapp.com/payment";
-        String response = null;
+        return () -> {
+            String uri = "http://book-payment.herokuapp.com/payment";
+            String response = null;
 
-        try {
-            response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
-            attributes.addFlashAttribute("mensagem_sucesso", response);
+            try {
+                response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
+                attributes.addFlashAttribute("mensagem_sucesso", response);
 
-        } catch (HttpClientErrorException e) {
-            e.printStackTrace();
-            attributes.addFlashAttribute("mensagem_falha", "Valor maior que o permitido");
-        } finally {
-            System.out.println(response);
-            return new ModelAndView("redirect:/produtos");
-        }
+            } catch (HttpClientErrorException e) {
+                e.printStackTrace();
+                attributes.addFlashAttribute("mensagem_falha", "Valor maior que o permitido");
+            } finally {
+                System.out.println(response);
+                return new ModelAndView("redirect:/produtos");
+            }
+        };
 
     }
 
