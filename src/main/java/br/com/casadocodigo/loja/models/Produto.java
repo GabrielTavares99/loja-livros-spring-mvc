@@ -1,8 +1,7 @@
 package br.com.casadocodigo.loja.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -10,17 +9,22 @@ import java.util.Objects;
 @Entity
 public class Produto {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String nome;
     private String descricao;
     private int paginas;
 
-//    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    //    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Calendar dataLancamento;
 
     private String sumarioPath;
+
+    public BigDecimal precoPara(TipoPreco tipoPreco) {
+        return precos.stream().filter(preco -> preco.getTipoPreco().equals(tipoPreco)).findFirst().get().getValor();
+    }
 
     @ElementCollection
     private List<Preco> precos;

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,7 +100,7 @@
 	
 	  
 	  <section class="buy-options clearfix">  
-	  <form action="<c:url value="/carrinho/add"/>" method="post" class="container">
+	  <form action="<c:url value='/carrinho/add' />" method="post" class="container">
 	    <ul id="variants" class="clearfix">
 			<c:forEach items="${produto.precos}" var="preco" varStatus="status">
 	    	  <li class="buy-option">

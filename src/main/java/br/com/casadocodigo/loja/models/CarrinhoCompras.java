@@ -4,12 +4,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Scope(value = WebApplicationContext.SCOPE_SESSION)
 @Component
-public class CarrinhoCompras {
+public class CarrinhoCompras implements Serializable{
 
     private Map<CarrinhoItem, Integer> itensCarrinho = new LinkedHashMap<>();
 
@@ -21,11 +24,29 @@ public class CarrinhoCompras {
         if (!itensCarrinho.containsKey(item)){
             itensCarrinho.put(item, 0);
         }
+
         return itensCarrinho.get(item);
+    }
+
+    public Collection<CarrinhoItem> getItens() {
+        System.out.println(itensCarrinho.keySet());
+        return itensCarrinho.keySet();
     }
 
     public int getQuantidade() {
         return itensCarrinho.values().stream().reduce(0, (proximo,acumulador) -> proximo + acumulador);
+    }
+
+    public BigDecimal getTotal(CarrinhoItem item) {
+        return item.getTotal(getQuantidadeItem(item));
+    }
+
+    public BigDecimal getTotal() {
+        BigDecimal total = BigDecimal.ZERO;
+        for (CarrinhoItem item: itensCarrinho.keySet()) {
+            total = total.add(getTotal(item));
+        }
+        return total;
     }
 
     public Map<CarrinhoItem, Integer> getItensCarrinho() {
