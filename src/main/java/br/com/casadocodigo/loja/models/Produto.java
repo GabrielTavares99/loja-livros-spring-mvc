@@ -9,6 +9,10 @@ import java.util.Objects;
 @Entity
 public class Produto {
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
