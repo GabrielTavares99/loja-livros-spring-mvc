@@ -1,9 +1,6 @@
 package br.com.casadocodigo.loja.daos;
 
 import br.com.casadocodigo.loja.models.Produto;
-import com.sun.org.glassfish.gmbal.ParameterNames;
-import org.hibernate.annotations.Parameter;
-import org.jboss.logging.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -18,7 +15,7 @@ public class ProdutoDAO {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void gravar(Produto produto){
+    public void gravar(Produto produto) {
         entityManager.persist(produto);
     }
 
