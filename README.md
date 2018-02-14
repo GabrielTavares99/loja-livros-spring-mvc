@@ -10,10 +10,11 @@ Para gerar a estrutura do projeto:
    `[pasta do  JBoosForge]/bin/forge`
    3. `project-new --named [nome do projeto]` **OU** `new-project --named [nome do projeto]`
    
-Instalar Heroku toolbelt
-linux sudo snap install heroku --classic
-sudo snap install heroku --classic
-heroku create [nome aplicação]
-git push heroku master
-ver erros heroku -- tail
-heroku open abrir no browser
+**Iniciando com Heroku**\
+    1. Instalar Heroku toolbelt `sudo snap install heroku --classic`\
+    2. Fazendo autenticação no heroku: `heroku create [nome aplicação]`
+
+**Fazendo deploy no Heroku**\
+    1. `git push heroku master`\
+    2. Ver erros `heroku --tail`\
+    3. `heroku open` abrir projeto no browser
