@@ -4,6 +4,7 @@ import br.com.casadocodigo.loja.daos.ProdutoDAO;
 import br.com.casadocodigo.loja.models.Produto;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,7 @@ public class HomeController {
     private static final Logger logger = Logger.getLogger(HomeController.class);
 
     @RequestMapping("/")
+    @Cacheable(value = "produtosHome")
     public ModelAndView index() {
         logger.info("INICIO APP");
         List<Produto> produtos = produtoDAO.listar();
