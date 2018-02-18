@@ -12,9 +12,10 @@ Para gerar a estrutura do projeto:
    
 **Iniciando com Heroku**\
     1. Instalar Heroku toolbelt `sudo snap install heroku --classic`\
-    2. Fazendo autenticação no heroku: `heroku create [nome aplicação]`
+    2. Fazendo autenticação: `heroku login`\
+    3. Criando projeto: `heroku create [nome aplicação]`
 
 **Fazendo deploy no Heroku**\
     1. `git push heroku master`\
-    2. Ver erros `heroku --tail`\
+    2. Ver erros `heroku logs --tail`\
     3. `heroku open` abrir projeto no browser
